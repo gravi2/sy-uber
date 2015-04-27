@@ -1,0 +1,2 @@
+# Ignore config files that are for local use 
+local.js
