@@ -1,0 +1,30 @@
+
+<ul class="getting-started">
+
+</ul>
+<div class="links">
+    <ul class="link-list">
+        <%if (req.session.user) { %>
+            <h4>Welcome, <%=req.session.user.firstname%> <%=req.session.user.lastname%></h4>
+            <img src="<%=req.session.user.picture%>" width="50"/>
+        <% } %>
+        <br> 
+        <h4>Uber API</h4>
+        <a href="/api/me"><li>Profile</li></a>
+        <a href="/api/user/activity?offset=0&limit=2"><li>Uber activity</li></a>
+        <a href="/api/products?latitude=37.7759792&longitude=-122.41823"><li>Product Types</li></a>
+        <a href="/api/estimates/time?start_latitude=37.7759792&start_longitude=-122.41823&end_latitude=37.78&end_longitude=-122.5"><li>Time Estimate</li></a>
+        <a href="/api/estimates/price?start_latitude=37.7759792&start_longitude=-122.41823&end_latitude=37.78&end_longitude=-122.5"><li>Price Estimate</li></a>
+        <hr>
+        <h4>Schedule API</h4>
+        <a href="#"><li>Add Ride</li></a>
+        <a href="#"><li>Update Ride</li></a>                
+        <a href="#"><li>Delete Ride</li></a>
+        <a href="#"><li>Rides</li></a>
+        <a href="#"><li>Delete all Rides</li></a>
+        <a href="#"><li>Preferences</li></a>
+        <hr>
+        <a href="/logout"><li>Logout</li></a>
+    </ul>
+</div>
+
