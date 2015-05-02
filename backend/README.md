@@ -1,5 +1,5 @@
 
-#Scedule Your Ride
+#Schedule Your Ride
 
 ##Backend Stack
 * Sailsjs
