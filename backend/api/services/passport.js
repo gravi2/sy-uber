@@ -56,8 +56,6 @@ var verifyHandler = function(token, tokenSecret, profile, done) {
       data.uberAccessToken = token;
       data.uberRefreshToken = tokenSecret;
 
-      sails.log.debug(data);
-
       User.create(data, function(err, user) {
         sails.log.debug('New user saved with uuid=' + user.uuid);
         return done(err, user);
