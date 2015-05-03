@@ -20,7 +20,8 @@ var verifyHandler = function(token, tokenSecret, profile, done) {
 
     if (user) {
       sails.log.debug('Found user in DB with uuid=' + profile.uuid);
-      user.accessToken = token;
+      user.uberAccessToken = token;
+      user.uberRefreshToken = tokenSecret;
       user.save(function(error) {
         return done(null, user);
       });
