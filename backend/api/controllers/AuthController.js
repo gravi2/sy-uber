@@ -6,6 +6,7 @@
  */
 
 var passport = require('passport');
+var UberproxyController = require('./UberproxyController');
 
 module.exports = {
 
@@ -59,11 +60,14 @@ module.exports = {
 					req.session.user = user;
 					res.redirect('/');
 				} else {
+					//set the access token in res, so that clients can store it
+					res.setHeader("x-access-token", user.accessToken);
+					// set req.user, so that UberproxyController can get/use it
+					req.user = user;
 					// render json response
-					res.redirect('/api/uber/me');
+					UberproxyController.profile(req,res);
 				}
 			}
 		})(req, res);
-
 	}
 };

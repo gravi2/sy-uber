@@ -27,6 +27,7 @@ module.exports.policies = {
   ***************************************************************************/
 
   '*': 'isAuthenticated',
+  'DashboardController': 'sessionAuth',
 
   'AuthController': {
     '*': true
