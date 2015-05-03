@@ -45,13 +45,15 @@ Follow instructions on http://docs.mongodb.org/manual/tutorial/install-mongodb-o
 ## Using APIs ##
 ### Authentication ###
 To use the APIs from this service, you will first need to authenticate using your Uber credentials. 
-* Visit https://<host>/auth/uber
+* Visit `https://<host>/auth/uber`
 * Authenticate using your Uber account
-* On successful signin, you will be redirected to https://<host>/api/uber/me and the headers will include the access token
+* On successful signin, you will be redirected to `https://<host>/api/uber/me` and the headers will include the access token
 
 ### Stateless API ###
 Once you have authenticated, use the returned token as a bearer token. The bearer token should be included in the authorization header for EACH API call.
- Authorization: bearer <token>
+```
+Authorization: bearer <token>
+```
 
 
 
