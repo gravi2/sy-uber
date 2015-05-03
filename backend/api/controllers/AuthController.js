@@ -17,6 +17,14 @@ module.exports = {
 
 	uberLogin: function(req, res) {
 
+		// format=html is for showing the dashboard. Else default to JSON response
+		if ( req.param('format') == 'html') {
+			req.session.format = 'html';
+		} else {
+			req.session.format = 'json';
+		}
+
+		sails.log.debug("format=" + req.session.format);
 		passport.authenticate('UberAuth', function(err, user, info) {
 			if ((err) || (!user)) {
 				return res.send({
@@ -46,9 +54,15 @@ module.exports = {
 			if (err) {
 				sails.log.debug(err);
 			} else {
-				req.session.user = user;
+				//if format=html, show dashboard
+				if (req.session.format == 'html') {
+					req.session.user = user;
+					res.redirect('/');
+				} else {
+					// render json response
+					res.redirect('/api/uber/me');
+				}
 			}
-			res.redirect('/');
 		})(req, res);
 
 	}

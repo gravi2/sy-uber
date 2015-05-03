@@ -28,7 +28,10 @@ module.exports = {
 		accessToken: {
 			type: 'string'
 		},
-		refreshToken: {
+		uberRefreshToken: {
+			type: 'string'
+		},
+		uberAccessToken: {
 			type: 'string'
 		}
 	}

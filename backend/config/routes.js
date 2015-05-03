@@ -55,23 +55,23 @@ module.exports.routes = {
     action: 'authorize'
   },
 
-  '/api/products': {
+  '/api/uber/products': {
     controller: 'UberproxyController',
     action: 'products'
   },
-  '/api/estimates/time': {
+  '/api/uber/estimates/time': {
     controller: 'UberproxyController',
     action: 'timeEstimates'
   },
-  '/api/estimates/price': {
+  '/api/uber/estimates/price': {
     controller: 'UberproxyController',
     action: 'priceEstimates'
   },
-  '/api/user/activity': {
+  '/api/uber/user/activity': {
     controller: 'UberproxyController',
     action: 'history'
   },
-  '/api/me': {
+  '/api/uber/me': {
     controller: 'UberproxyController',
     action: 'profile'
   }

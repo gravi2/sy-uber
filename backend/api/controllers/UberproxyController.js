@@ -40,7 +40,7 @@ module.exports = {
 
 	_makeUberUserGetCall: function(req, res, url) {
 		var headers = {
-			'Authorization': 'Bearer ' + req.session.user.accessToken
+			'Authorization': 'Bearer ' + req.user.uberAccessToken
 		};
 		this._makeUberGetCall(req, res, url, headers);
 	},

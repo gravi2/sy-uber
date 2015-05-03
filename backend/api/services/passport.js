@@ -1,24 +1,27 @@
 'use strict';
 
+var jwt = require('jsonwebtoken');
+
 var passport = require('passport'),
+  BearerStrategy = require('passport-http-bearer').Strategy,
   UberStrategy = require('../../strategy/uberstrategy');
 
 var verifyHandler = function(token, tokenSecret, profile, done) {
-  sails.log.debug('Verifying the uber user token=' + token + ',tokenSecret=' + tokenSecret);
+  sails.log.debug('Verifying the uber tokens returned by uber oAuth2 service');
   User.findOne({
     uuid: profile.uuid
   }, function(err, user) {
 
-    if(err) {
+    if (err) {
       sails.log.error(err);
       //TODO: error out
-      return done(null,null);
+      return done(null, null);
     }
 
     if (user) {
-      sails.log.debug('Found user in DB with uuid=' + profile.uuid + ',_id=' + user._id);
+      sails.log.debug('Found user in DB with uuid=' + profile.uuid);
       user.accessToken = token;
-      user.save(function(error){
+      user.save(function(error) {
         return done(null, user);
       });
     } else {
@@ -26,8 +29,7 @@ var verifyHandler = function(token, tokenSecret, profile, done) {
       var data = {
         provider: profile.provider,
         uuid: profile.uuid,
-        name: profile.displayName,
-        accessToken: token
+        name: profile.displayName
       };
 
       if (profile.emails && profile.emails[0] && profile.emails[0].value) {
@@ -43,6 +45,16 @@ var verifyHandler = function(token, tokenSecret, profile, done) {
       if (profile.photos && profile.photos[0]) {
         data.picture = profile.photos[0];
       }
+
+      data.accessToken = jwt.sign(data, sails.config.jwt.secret, {
+        algorithm: sails.config.jwt.algorithm,
+        issuer: sails.config.jwt.issuer,
+        audience: sails.config.jwt.audience,
+        expiresInMinutes: sails.config.jwt.expiresInMinutes
+      });
+
+      data.uberAccessToken = token;
+      data.uberRefreshToken = tokenSecret;
 
       sails.log.debug(data);
 
@@ -74,7 +86,39 @@ module.exports = {
       clientID: sails.config.uber.clientID,
       clientSecret: sails.config.uber.clientSecret,
       callbackURL: sails.config.uber.callbackURL,
-      scope: ['profile','history']
+      scope: ['profile', 'history']
     }, verifyHandler));
+
+    passport.use('bearer', new BearerStrategy(
+      function(token, done) {
+        sails.log.debug('Verifying the JWT token ' + token);
+        try {
+          var decoded = jwt.verify(token, sails.config.jwt.secret, {
+            algorithm: sails.config.jwt.algorithm,
+            issuer: sails.config.jwt.issuer,
+            audience: sails.config.jwt.audience,
+            expiresInMinutes: sails.config.jwt.expiresInMinutes
+          });
+        } catch (err) {
+          return done(err);
+        }
+
+        sails.log.debug('Token verified, now looking for user in DB');
+
+        User.findOne({
+          accessToken: token
+        }, function(err, user) {
+          if (err) {
+            return done(err);
+          }
+          if (!user) {
+            return done(null, false);
+          }
+          return done(null, user, {
+            scope: 'all'
+          });
+        });
+      }
+    ));
   }
 };

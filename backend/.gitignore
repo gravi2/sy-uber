@@ -1,0 +1,3 @@
+# Ignore Node modules. These get installed via build
+node_modules
+.tmp
