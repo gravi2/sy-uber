@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F41B84AA1AF5A60D008D92FA /* ServerOAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B84A91AF5A60D008D92FA /* ServerOAuthViewController.swift */; };
 		F4AEF4DF1AF5792E00325D14 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AEF4DE1AF5792E00325D14 /* AppDelegate.swift */; };
 		F4AEF4E11AF5792E00325D14 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AEF4E01AF5792E00325D14 /* ViewController.swift */; };
 		F4AEF4E41AF5792E00325D14 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F4AEF4E21AF5792E00325D14 /* Main.storyboard */; };
@@ -27,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F41B84A91AF5A60D008D92FA /* ServerOAuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerOAuthViewController.swift; sourceTree = "<group>"; };
 		F4AEF4D91AF5792E00325D14 /* Nxt Ride.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Nxt Ride.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4AEF4DD1AF5792E00325D14 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4AEF4DE1AF5792E00325D14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				F4AEF4E51AF5792E00325D14 /* Images.xcassets */,
 				F4AEF4E71AF5792E00325D14 /* LaunchScreen.xib */,
 				F4AEF4DC1AF5792E00325D14 /* Supporting Files */,
+				F41B84A91AF5A60D008D92FA /* ServerOAuthViewController.swift */,
 			);
 			path = "Nxt Ride";
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			files = (
 				F4AEF4E11AF5792E00325D14 /* ViewController.swift in Sources */,
 				F4AEF4DF1AF5792E00325D14 /* AppDelegate.swift in Sources */,
+				F41B84AA1AF5A60D008D92FA /* ServerOAuthViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +417,7 @@
 				F4AEF4FA1AF5792E00325D14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F4AEF4FB1AF5792E00325D14 /* Build configuration list for PBXNativeTarget "Nxt RideTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +426,7 @@
 				F4AEF4FD1AF5792E00325D14 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
