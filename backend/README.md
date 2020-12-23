@@ -1,12 +1,13 @@
 
-#Schedule Your Ride
+# Schedule Your Ride
+This folder contains the backend code for the SY-Uber app. 
 
-##Backend Stack
+## Backend Stack
 * Sailsjs
 * Passportjs
 * MongoDB
 
-##Installing on Ubuntu Server
+## Installing on Ubuntu Server
 
 ### Add nodesource PPA, so we can install the latest nodejs
 ```
